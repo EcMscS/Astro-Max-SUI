@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var lensFocalLength: Double = 11
-    @State private var cropFactor: Double = 1.5
+    @State private var lensFocalLength = UserDefaults.standard.double(forKey: "LensFocalLength")
+    @State private var cropFactor = UserDefaults.standard.double(forKey: "CropFactor")
     @State private var showingInfoView = false
     
     var body: some View {
@@ -24,7 +24,9 @@ struct ContentView: View {
                     Text("\(lensFocalLength, specifier: "%.0f")").fontWeight(.semibold)
                 }
                 .font(.title2)
-                Slider(value: $lensFocalLength, in: 10...50, step: 1)
+                Slider(value: $lensFocalLength, in: 10...50, step: 1) { _ in
+                    UserDefaults.standard.set(self.lensFocalLength, forKey: "LensFocalLength")
+                }
                     .accentColor(.red)
                 HStack {
                     Text("Crop Factor")
@@ -32,7 +34,9 @@ struct ContentView: View {
                     Text("\(cropFactor, specifier: "%.1f")").fontWeight(.semibold)
                 }
                 .font(.title2)
-                Slider(value: $cropFactor, in: 1...7, step: 0.1)
+                Slider(value: $cropFactor, in: 1...7, step: 0.1) { _ in
+                    UserDefaults.standard.set(self.cropFactor, forKey: "CropFactor")
+                }
                     .accentColor(.red)
                 HStack {
                     Text("Max Shutter Speed (sec)")
