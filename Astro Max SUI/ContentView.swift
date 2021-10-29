@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var lensFocalLength = UserDefaults.standard.double(forKey: "LensFocalLength")
     @State private var cropFactor = UserDefaults.standard.double(forKey: "CropFactor")
+    @State private var lowerFocalLimit = 5
+    @State private var upperFocalLimit = 100
     @State private var showingInfoView = false
     
     var body: some View {
@@ -24,17 +26,36 @@ struct ContentView: View {
                     Text("\(lensFocalLength, specifier: "%.0f")").fontWeight(.semibold)
                 }
                 .font(.title2)
-                Slider(value: $lensFocalLength, in: 10...50, step: 1) { _ in
+                Slider(value: $lensFocalLength, in: Double(lowerFocalLimit)...Double(upperFocalLimit), step: 1) {
+                    Text("")
+                } minimumValueLabel: {
+                    Text("\(lowerFocalLimit)")
+                } maximumValueLabel: {
+                    Text("\(upperFocalLimit)")
+                } onEditingChanged: { _ in
                     UserDefaults.standard.set(self.lensFocalLength, forKey: "LensFocalLength")
                 }
                     .accentColor(.red)
+                HStack {
+                    Spacer()
+                    Stepper("", value: $upperFocalLimit, in: 50...300, step: 1)
+                        .frame(width: 80, height: 30)
+                        .background(Color.red)
+                        .cornerRadius(5)
+                }
                 HStack {
                     Text("Crop Factor")
                     Spacer()
                     Text("\(cropFactor, specifier: "%.1f")").fontWeight(.semibold)
                 }
                 .font(.title2)
-                Slider(value: $cropFactor, in: 1...7, step: 0.1) { _ in
+                Slider(value: $cropFactor, in: 1...7, step: 0.1) {
+                    Text("")
+                } minimumValueLabel: {
+                    Text("1.0")
+                } maximumValueLabel: {
+                    Text("7.0")
+                } onEditingChanged: { _ in
                     UserDefaults.standard.set(self.cropFactor, forKey: "CropFactor")
                 }
                     .accentColor(.red)
