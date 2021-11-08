@@ -10,9 +10,13 @@ import SwiftUI
 struct ContentView: View {
     @State private var lensFocalLength = UserDefaults.standard.double(forKey: "LensFocalLength")
     @State private var cropFactor = UserDefaults.standard.double(forKey: "CropFactor")
-    @State private var lowerFocalLimit = 5
-    @State private var upperFocalLimit = 100
+    let lowerFocalLimit = 5
+    @State private var upperFocalLimitSelection = 1
+    @State private var ruleSelection = 4
     @State private var showingInfoView = false
+    
+    let upperFocalLimits = [50, 100, 150, 200, 250, 300]
+    let rules = [100, 200, 300, 400, 500]
     
     var body: some View {
         ZStack {
@@ -26,23 +30,24 @@ struct ContentView: View {
                     Text("\(lensFocalLength, specifier: "%.0f")").fontWeight(.semibold)
                 }
                 .font(.title2)
-                Slider(value: $lensFocalLength, in: Double(lowerFocalLimit)...Double(upperFocalLimit), step: 1) {
+                Slider(value: $lensFocalLength, in: Double(lowerFocalLimit)...Double(upperFocalLimits[upperFocalLimitSelection]), step: 1) {
                     Text("")
                 } minimumValueLabel: {
                     Text("\(lowerFocalLimit)")
                 } maximumValueLabel: {
-                    Text("\(upperFocalLimit)")
+                    Text("\(upperFocalLimits[upperFocalLimitSelection])")
                 } onEditingChanged: { _ in
                     UserDefaults.standard.set(self.lensFocalLength, forKey: "LensFocalLength")
                 }
                     .accentColor(.red)
-                HStack {
-                    Spacer()
-                    Stepper("", value: $upperFocalLimit, in: 50...300, step: 1)
-                        .frame(width: 80, height: 30)
-                        .background(Color.red)
-                        .cornerRadius(5)
+                Picker("Upper Focal Limit", selection: $upperFocalLimitSelection) {
+                    ForEach(0 ..< upperFocalLimits.count) {
+                        Text("\(self.upperFocalLimits[$0]) mm")
+                    }
                 }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .background(Color.red)
+                    .cornerRadius(5)
                 HStack {
                     Text("Crop Factor")
                     Spacer()
@@ -59,10 +64,18 @@ struct ContentView: View {
                     UserDefaults.standard.set(self.cropFactor, forKey: "CropFactor")
                 }
                     .accentColor(.red)
+                Picker("Calculation Rule", selection: $ruleSelection) {
+                    ForEach(0 ..< rules.count) {
+                        Text("\(self.rules[$0]) rule")
+                    }
+                }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .background(Color.red)
+                    .cornerRadius(5)
                 HStack {
                     Text("Max Shutter Speed (sec)")
                     Spacer()
-                    Text("\(500 / lensFocalLength / cropFactor, specifier: "%.1f")").fontWeight(.semibold)
+                    Text("\(Double(rules[ruleSelection]) / lensFocalLength / cropFactor, specifier: "%.1f")").fontWeight(.semibold)
                 }
                 .font(.title2)
                 HStack {
