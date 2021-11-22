@@ -25,9 +25,13 @@ struct ContentView: View {
                 Text("Astro Max")
                     .font(.largeTitle).fontWeight(.bold)
                 HStack {
-                    Text("Lens Focal Length (mm)")
+                    Text("Lens Focal Length")
                     Spacer()
-                    Text("\(lensFocalLength, specifier: "%.0f")").fontWeight(.semibold)
+                    Text(" \(lensFocalLength, specifier: "%.0f") mm ")
+                        .fontWeight(.medium)
+                        .foregroundColor(.black)
+                        .background(Color.red)
+                        .cornerRadius(5)
                 }
                 .font(.title2)
                 Slider(value: $lensFocalLength, in: Double(lowerFocalLimit)...Double(upperFocalLimits[upperFocalLimitSelection]), step: 1) {
@@ -51,7 +55,11 @@ struct ContentView: View {
                 HStack {
                     Text("Crop Factor")
                     Spacer()
-                    Text("\(cropFactor, specifier: "%.1f")").fontWeight(.semibold)
+                    Text(" \(cropFactor, specifier: "%.1f") ")
+                        .fontWeight(.medium)
+                        .foregroundColor(.black)
+                        .background(Color.red)
+                        .cornerRadius(5)
                 }
                 .font(.title2)
                 Slider(value: $cropFactor, in: 1...7, step: 0.1) {
@@ -73,9 +81,13 @@ struct ContentView: View {
                     .background(Color.red)
                     .cornerRadius(5)
                 HStack {
-                    Text("Max Shutter Speed (sec)")
+                    Text("Max Shutter Speed")
                     Spacer()
-                    Text("\(Double(rules[ruleSelection]) / lensFocalLength / cropFactor, specifier: "%.1f")").fontWeight(.semibold)
+                    Text(" \(Double(rules[ruleSelection]) / lensFocalLength / cropFactor, specifier: "%.1f") s ")
+                        .fontWeight(.medium)
+                        .foregroundColor(.black)
+                        .background(Color.red)
+                        .cornerRadius(5)
                 }
                 .font(.title2)
                 HStack {
