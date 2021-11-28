@@ -276,7 +276,7 @@
 				DEVELOPMENT_TEAM = R9G33E665C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Astro Max SUI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,7 +298,7 @@
 				DEVELOPMENT_TEAM = R9G33E665C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Astro Max SUI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
