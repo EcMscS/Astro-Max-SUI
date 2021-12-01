@@ -31,7 +31,7 @@ struct ContentView: View {
             Color.black.edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 25) {
-                Text("Astro Max")
+                Text("Astro Max Calculator\n")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 
@@ -104,7 +104,7 @@ struct ContentView: View {
                     }
                 
                 HStack {
-                    Text("Max Shutter Speed")
+                    Text("Maximum Shutter Speed")
                         .fontWeight(.medium)
                     Spacer()
                     Text(" \(Double(rules[ruleSelection]) / lensFocalLength / cropFactor, specifier: "%.1f") s ")
@@ -114,6 +114,8 @@ struct ContentView: View {
                         .cornerRadius(5)
                 }
                     .font(.title2)
+                
+                HStack { }
                 
                 HStack {
                     Text("     ")
