@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var cropFactor = UserDefaults.standard.double(forKey: "CropFactor")
     @State private var ruleSelection = UserDefaults.standard.integer(forKey: "RuleSelection")
     @State private var showingInfoView = false
+    @State private var dayMode = UserDefaults.standard.bool(forKey: "DayMode")
     
     let upperFocalLimits = [50, 100, 150, 200, 250, 300]
     let rules = [100, 200, 300, 400, 500]
@@ -28,12 +29,20 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            if dayMode {
+                Color.init(white: 0.85).edgesIgnoringSafeArea(.all)
+            } else {
+                Color.black.edgesIgnoringSafeArea(.all)
+            }
             
             VStack(spacing: 25) {
-                Text("Astro Max Calculator\n")
+                Group {
+                    Text("Astro Max Calculator")
+                        .fontWeight(.bold)
+                    
+                    Text("\(Image(systemName: "sparkles"))")
+                }
                     .font(.largeTitle)
-                    .fontWeight(.bold)
                 
                 HStack {
                     Text("Lens Focal Length")
@@ -41,8 +50,8 @@ struct ContentView: View {
                     Spacer()
                     Text(" \(lensFocalLength, specifier: "%.0f") mm ")
                         .fontWeight(.medium)
-                        .foregroundColor(.black)
-                        .background(Color.red)
+                        .foregroundColor(dayMode ? .init(white: 0.85) : .black)
+                        .background(dayMode ? Color.black : Color.red)
                         .cornerRadius(5)
                 }
                     .font(.title2)
@@ -56,7 +65,7 @@ struct ContentView: View {
                 } onEditingChanged: { _ in
                     UserDefaults.standard.set(self.lensFocalLength, forKey: "LensFocalLength")
                 }
-                    .accentColor(.red)
+                    .accentColor(dayMode ? .black : .red)
                 
                 Picker("Upper Focal Limit", selection: $upperFocalLimitSelection) {
                     ForEach(0 ..< upperFocalLimits.count) {
@@ -67,6 +76,9 @@ struct ContentView: View {
                     .cornerRadius(5)
                     .onChange(of: upperFocalLimitSelection) { _ in
                         UserDefaults.standard.set(self.upperFocalLimitSelection, forKey: "UpperFocalLimitSelection")
+                        if self.upperFocalLimits[upperFocalLimitSelection] < Int(self.lensFocalLength) {
+                            self.lensFocalLength = Double(self.upperFocalLimits[upperFocalLimitSelection])
+                        }
                     }
                 
                 HStack {
@@ -75,8 +87,8 @@ struct ContentView: View {
                     Spacer()
                     Text(" \(cropFactor, specifier: "%.1f") ")
                         .fontWeight(.medium)
-                        .foregroundColor(.black)
-                        .background(Color.red)
+                        .foregroundColor(dayMode ? .init(white: 0.85) : .black)
+                        .background(dayMode ? Color.black : Color.red)
                         .cornerRadius(5)
                 }
                     .font(.title2)
@@ -90,7 +102,7 @@ struct ContentView: View {
                 } onEditingChanged: { _ in
                     UserDefaults.standard.set(self.cropFactor, forKey: "CropFactor")
                 }
-                    .accentColor(.red)
+                    .accentColor(dayMode ? .black : .red)
                 
                 Picker("Calculation Rule", selection: $ruleSelection) {
                     ForEach(0 ..< rules.count) {
@@ -109,8 +121,8 @@ struct ContentView: View {
                     Spacer()
                     Text(" \(Double(rules[ruleSelection]) / lensFocalLength / cropFactor, specifier: "%.1f") s ")
                         .fontWeight(.medium)
-                        .foregroundColor(.black)
-                        .background(Color.red)
+                        .foregroundColor(dayMode ? .init(white: 0.85) : .black)
+                        .background(dayMode ? Color.black : Color.red)
                         .cornerRadius(5)
                 }
                     .font(.title2)
@@ -118,20 +130,25 @@ struct ContentView: View {
                 HStack { }
                 
                 HStack {
-                    Text("     ")
-                    Spacer()
-                    Image(systemName: "sparkles").font(.largeTitle)
+                    Button(dayMode ? "Night Mode" : "Day Mode") {
+                        withAnimation {
+                            self.dayMode.toggle()
+                        }
+                        UserDefaults.standard.set(self.dayMode, forKey: "DayMode")
+                    }
+                        .padding(3)
+                        .overlay(RoundedRectangle(cornerRadius: 5).strokeBorder())
                     Spacer()
                     Button("\(Image(systemName: "info.circle"))") {
                         showingInfoView.toggle()
                     }
                         .font(.title2)
                         .sheet(isPresented: $showingInfoView) {
-                            InfoView()
+                            InfoView(colorScheme: dayMode ? "Day" : "Night")
                         }
                 }
             }
-            .foregroundColor(.red)
+            .foregroundColor(dayMode ? .black : .red)
             .padding()
             .onAppear {  // for first time run and UserDefaults not set
                 if lensFocalLength == 0 {
