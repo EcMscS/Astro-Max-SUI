@@ -18,7 +18,7 @@ struct ElementSetting: View {
                 .fontWeight(.medium)
             Spacer()
             Text("\(setting, specifier: "%.1f")\(unit == "" ? "" : " \(unit)")")
-                .modifier(AstroMaxColoredTextStyle())
+                .modifier(AMColoredTextStyle())
         }
     }
 }

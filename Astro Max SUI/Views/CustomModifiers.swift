@@ -7,7 +7,17 @@
 
 import SwiftUI
 
-struct AstroMaxColoredTextStyle: ViewModifier {
+struct AMStandardButtonStyle : ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .buttonStyle(.bordered)
+            .tint(.accentColor)
+            .controlSize(.large)
+    }
+}
+
+struct AMColoredTextStyle: ViewModifier {
     
     func body(content: Content) -> some View {
         content
