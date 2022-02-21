@@ -8,13 +8,27 @@
 import SwiftUI
 
 struct ElementInfo: View {
+    
+    @Binding var isShowingInfoView: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Spacer()
+            
+            Button {
+                isShowingInfoView.toggle()
+            } label: {
+                Image(systemName: "info.circle")
+            }
+            .sheet(isPresented: $isShowingInfoView) {
+                InfoView()
+            }
+        }
     }
 }
 
 struct ElementInfo_Previews: PreviewProvider {
     static var previews: some View {
-        ElementInfo()
+        ElementInfo(isShowingInfoView: .constant(true))
     }
 }

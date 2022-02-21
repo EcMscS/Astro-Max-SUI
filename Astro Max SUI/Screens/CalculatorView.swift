@@ -9,13 +9,7 @@ import SwiftUI
 
 struct CalculatorView: View {
     
-    
-    
-    @State private var lensFocalLengthIncrement = 50.0
-    @State private var cropFactorIncrement = 0.1
-    
-    @State private var selectedLensFocalLength = 50
-    @State private var selectedCropsFactor = 100
+    @StateObject var viewModel = CalculatorViewModel()
     
     var body: some View {
         NavigationView {
@@ -25,24 +19,48 @@ struct CalculatorView: View {
                 
                 VStack (spacing: 25) {
                     
-                    Image(systemName: "moon.stars.fill")
+                    Image(systemName: "sparkles")
                         .resizable()
+                        .foregroundColor(.accentColor)
                         .scaledToFit()
                         .frame(width: 80, height: 80)
                     
-                    ElementSetting(title: "Lens Focal Length", setting: "92 nm")
+                    ElementSetting(title: "Lens Focal Length",
+                                   setting: viewModel.changeInMaxFocalLength(),
+                                   unit: "nm")
                     
-                    ElementSlider(startingValue: 5.0, endingValue: 250.0, increment: $lensFocalLengthIncrement)
+                    ElementSliderConnectedToPicker(startingValue: 5.0,
+                                                   increment: viewModel.lensFocalLengthIncrement,
+                                                   sliderValue: $viewModel.lensFocalLength,
+                                                   maxSliderValue: $viewModel.upperFocalLimitSelection)
                 
-                    ElementPicker(pickerColor: .red, pickerName: "Lens Focal Length", segments: [50, 100, 150, 200, 250, 300], unit: "nm", selectedIndex: $selectedLensFocalLength)
+                    ElementPicker(pickerColor: .accentColor,
+                                  pickerName: "Lens Focal Length",
+                                  segments: viewModel.upperFocalLimits,
+                                  unit: "nm",
+                                  selectedIndex: $viewModel.upperFocalLimitSelection)
 
-                    ElementSetting(title: "Crop Factor", setting: "6.8")
+                    ElementSetting(title: "Crop Factor",
+                                   setting: viewModel.cropFactor,
+                                   unit: "")
                     
-                    ElementSlider(startingValue: 1.0, endingValue: 7.0, increment: $cropFactorIncrement)
+                    ElementSlider(startingValue: 1.0,
+                                  endingValue: 7.0,
+                                  increment: viewModel.cropFactorIncrement,
+                                  sliderValue: $viewModel.cropFactor)
 
-                    ElementPicker(pickerColor: .red, pickerName: "Crop Factor", segments: [100, 200, 300, 400, 500], unit: "rule", selectedIndex: $selectedCropsFactor)
+                    ElementPicker(pickerColor: .accentColor,
+                                  pickerName: "Rule Selection",
+                                  segments: viewModel.rules,
+                                  unit: "rule",
+                                  selectedIndex: $viewModel.ruleSelection)
                     
-                    ElementSetting(title: "Maximum Shutter Speed", setting: "0.2 s")
+                    ElementSetting(title: "Maximum Shutter Speed",
+                                   setting: viewModel.calculateMaxShutterSpeed(),
+                                   unit: "s")
+                    
+                    ElementInfo(isShowingInfoView: $viewModel.isShowingInfoView)
+                    
                     Spacer()
                 }
                 .padding()
@@ -58,58 +76,4 @@ struct CalculatorView_Previews: PreviewProvider {
         CalculatorView()
             
     }
-}
-
-struct ElementSetting: View {
-    
-    var title: String
-    var setting: String
-    
-    var body: some View {
-        HStack {
-            Text(title)
-                .fontWeight(.medium)
-            Spacer()
-            Text(setting)
-        }
-    }
-    
-}
-
-struct ElementSlider: View {
-    
-    let startingValue: CGFloat
-    let endingValue: CGFloat
-    
-    @Binding var increment: Double
-    
-    var body: some View {
-        HStack {
-            Text("\(startingValue, specifier: "%.0f")")
-            Slider(value: $increment, in: startingValue...endingValue)
-                .colorMultiply(.red)
-            Text("\(endingValue, specifier: "%.0f")")
-        }
-    }
-    
-}
-
-struct ElementPicker: View {
-
-    var pickerColor: Color
-    var pickerName: String
-    var segments: [Int]
-    var unit: String
-    @Binding var selectedIndex: Int
-    
-    var body: some View {
-        Picker(pickerName, selection: $selectedIndex) {
-            ForEach(segments, id: \.self) {
-                Text("\($0) \(unit)")
-            }
-        }
-        .pickerStyle(.segmented)
-        .colorMultiply(pickerColor)
-    }
-    
 }

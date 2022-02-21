@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct Astro_Max_SUIApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CalculatorView()
         }
     }
 }

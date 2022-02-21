@@ -7,17 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5988B3B427C0729800FA1E17 /* ElementSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988B3B327C0729800FA1E17 /* ElementSetting.swift */; };
+		5988B3B627C0732500FA1E17 /* ElementSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988B3B527C0732500FA1E17 /* ElementSlider.swift */; };
+		5988B3B827C0737E00FA1E17 /* ElementPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988B3B727C0737E00FA1E17 /* ElementPicker.swift */; };
+		5988B3BA27C3085700FA1E17 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988B3B927C3085700FA1E17 /* CustomModifiers.swift */; };
+		5988B3BC27C343A900FA1E17 /* ElementSliderConnectedToPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988B3BB27C343A900FA1E17 /* ElementSliderConnectedToPicker.swift */; };
+		5988B3BE27C3EC3D00FA1E17 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988B3BD27C3EC3D00FA1E17 /* CalculatorViewModel.swift */; };
+		5988B3C027C40D1100FA1E17 /* ElementInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988B3BF27C40D1100FA1E17 /* ElementInfo.swift */; };
+		59BEE68727BCC7D300E0008E /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEE68627BCC7D300E0008E /* CalculatorView.swift */; };
 		7E022E9D26ED695B0073CC1D /* Astro_Max_SUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E022E9C26ED695B0073CC1D /* Astro_Max_SUIApp.swift */; };
-		7E022E9F26ED695B0073CC1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E022E9E26ED695B0073CC1D /* ContentView.swift */; };
 		7E022EA126ED695C0073CC1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E022EA026ED695C0073CC1D /* Assets.xcassets */; };
 		7E022EA426ED695C0073CC1D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E022EA326ED695C0073CC1D /* Preview Assets.xcassets */; };
 		7EA7534126EFC053002B823C /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7534026EFC053002B823C /* InfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5988B3B327C0729800FA1E17 /* ElementSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementSetting.swift; sourceTree = "<group>"; };
+		5988B3B527C0732500FA1E17 /* ElementSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementSlider.swift; sourceTree = "<group>"; };
+		5988B3B727C0737E00FA1E17 /* ElementPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementPicker.swift; sourceTree = "<group>"; };
+		5988B3B927C3085700FA1E17 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
+		5988B3BB27C343A900FA1E17 /* ElementSliderConnectedToPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementSliderConnectedToPicker.swift; sourceTree = "<group>"; };
+		5988B3BD27C3EC3D00FA1E17 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
+		5988B3BF27C40D1100FA1E17 /* ElementInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementInfo.swift; sourceTree = "<group>"; };
+		59BEE68627BCC7D300E0008E /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		7E022E9926ED695B0073CC1D /* Astro Max SUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Astro Max SUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E022E9C26ED695B0073CC1D /* Astro_Max_SUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astro_Max_SUIApp.swift; sourceTree = "<group>"; };
-		7E022E9E26ED695B0073CC1D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7E022EA026ED695C0073CC1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E022EA326ED695C0073CC1D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7E022EA526ED695C0073CC1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -35,6 +49,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5988B3B227C0727500FA1E17 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5988B3B327C0729800FA1E17 /* ElementSetting.swift */,
+				5988B3BB27C343A900FA1E17 /* ElementSliderConnectedToPicker.swift */,
+				5988B3B527C0732500FA1E17 /* ElementSlider.swift */,
+				5988B3B727C0737E00FA1E17 /* ElementPicker.swift */,
+				5988B3BF27C40D1100FA1E17 /* ElementInfo.swift */,
+				5988B3B927C3085700FA1E17 /* CustomModifiers.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		59BEE68527BCC6DB00E0008E /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				5988B3BD27C3EC3D00FA1E17 /* CalculatorViewModel.swift */,
+				59BEE68627BCC7D300E0008E /* CalculatorView.swift */,
+				7EA7534026EFC053002B823C /* InfoView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		7E022E9026ED695B0073CC1D = {
 			isa = PBXGroup;
 			children = (
@@ -55,8 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				7E022E9C26ED695B0073CC1D /* Astro_Max_SUIApp.swift */,
-				7E022E9E26ED695B0073CC1D /* ContentView.swift */,
-				7EA7534026EFC053002B823C /* InfoView.swift */,
+				5988B3B227C0727500FA1E17 /* Views */,
+				59BEE68527BCC6DB00E0008E /* Screens */,
 				7E022EA026ED695C0073CC1D /* Assets.xcassets */,
 				7E022EA526ED695C0073CC1D /* Info.plist */,
 				7E022EA226ED695C0073CC1D /* Preview Content */,
@@ -141,9 +178,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E022E9F26ED695B0073CC1D /* ContentView.swift in Sources */,
+				59BEE68727BCC7D300E0008E /* CalculatorView.swift in Sources */,
+				5988B3BE27C3EC3D00FA1E17 /* CalculatorViewModel.swift in Sources */,
+				5988B3C027C40D1100FA1E17 /* ElementInfo.swift in Sources */,
 				7EA7534126EFC053002B823C /* InfoView.swift in Sources */,
 				7E022E9D26ED695B0073CC1D /* Astro_Max_SUIApp.swift in Sources */,
+				5988B3B627C0732500FA1E17 /* ElementSlider.swift in Sources */,
+				5988B3BA27C3085700FA1E17 /* CustomModifiers.swift in Sources */,
+				5988B3B827C0737E00FA1E17 /* ElementPicker.swift in Sources */,
+				5988B3BC27C343A900FA1E17 /* ElementSliderConnectedToPicker.swift in Sources */,
+				5988B3B427C0729800FA1E17 /* ElementSetting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +245,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -256,7 +300,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -276,7 +320,7 @@
 				DEVELOPMENT_TEAM = R9G33E665C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Astro Max SUI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,7 +342,7 @@
 				DEVELOPMENT_TEAM = R9G33E665C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Astro Max SUI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
